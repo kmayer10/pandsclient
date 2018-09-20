@@ -14,8 +14,8 @@ public class PandSClientController {
     @GetMapping("/api/pandsclient/{id}")
     public Collection getAtomicProducts(@PathVariable String id){
 
-        //String PANDS_URI = "http://crm_acc_products-and-services:54046/api/de/epc/billingCodesByOfferId/"+id;
-        String PANDS_URI = "http://172.27.27.154:54046/api/de/epc/billingCodesByOfferId/"+id;
+        String PANDS_URI = "http://crm_acc_products-and-services:54046/api/de/epc/billingCodesByOfferId/"+id;
+        //String PANDS_URI = "http://172.27.27.154:54046/api/de/epc/billingCodesByOfferId/"+id;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
