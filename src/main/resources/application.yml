@@ -1,0 +1,10 @@
+spring:
+  application:
+      name: pands-client
+  profiles: acc
+
+server:
+  port: 54055
+
+logging:
+  config: classpath:logback-spring.xml

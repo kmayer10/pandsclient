@@ -1,0 +1,56 @@
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <springProperty scope="context" name="SPRING_APP_NAME" source="spring.application.name" />
+    <springProperty scope="context" name="RANDOM_VALUE" source="random.value" />
+    <property name="LOGGING_PATH" value="log" />
+    <property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd  HH:mm:ss} - %msg%n" />
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGGING_PATH}/${SPRING_APP_NAME}.${RANDOM_VALUE}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${LOGGING_PATH}/${SPRING_APP_NAME}.${RANDOM_VALUE}-%d{yyyyMMdd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}}</pattern>
+        </encoder>
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <springProfile name="dev,local-dev,acc">
+        <logger name="org.springframework" level="ERROR">
+            <appender-ref ref="FILE" />
+        </logger>
+        <logger name="com.orange" level="DEBUG">
+            <appender-ref ref="FILE" />
+        </logger>
+        <root level="INFO">
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+    <springProfile name="ref">
+        <logger name="org.springframework" level="WARN">
+            <appender-ref ref="FILE" />
+        </logger>
+        <logger name="com.orange.dpe" level="INFO">
+            <appender-ref ref="FILE" />
+        </logger>
+        <root level="INFO">
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+    <springProfile name="prod">
+        <logger name="org.springframework" level="ERROR">
+            <appender-ref ref="FILE" />
+        </logger>
+        <logger name="com.orange.dpe" level="WARN">
+            <appender-ref ref="FILE" />
+        </logger>
+        <root level="INFO">
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+
+</configuration>
