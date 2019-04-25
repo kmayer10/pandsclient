@@ -4,7 +4,7 @@ spring:
   profiles: acc
 
 server:
-  port: 54055
+  port: 54045
 
 logging:
   config: classpath:logback-spring.xml
