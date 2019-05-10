@@ -1,10 +1,29 @@
 spring:
   application:
       name: pands-client
+  profiles: dev
+
+server:
+  port: 8584
+
+pandsuri: http://localhost:8585
+
+logging:
+  config: classpath:logback-spring.xml
+
+pandsEndPoint: "http://test/"
+  
+---
+
+spring:
+  application:
+      name: pands-client
   profiles: acc
 
 server:
   port: 54045
+
+pandsuri: http://crm_acc_products-and-services:54046
 
 logging:
   config: classpath:logback-spring.xml
