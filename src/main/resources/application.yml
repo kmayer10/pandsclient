@@ -25,6 +25,8 @@ spring:
         url: ${SPRING_BOOTADMIN_URL}
         username: dpeBootAdminAcc
         password: TechMOrange2019AdminAcc
+        instance:
+          service-base-url: ${VM_HOST_URL}
   sleuth:
     sampler:
       probability: 1.0
