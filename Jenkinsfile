@@ -20,10 +20,11 @@ pipeline {
     		   mvnHome = tool 'M3'
 
 	    	    sh "'${mvnHome}/bin/mvn' clean install"
-		    		// Defining Properties for Sonar build & Dockerfile Args
-			    	ServiceName='pandsclient-acc'
-		    	    JAR_PATH=sh(returnStdout: true, script: "ls -1 target/*.jar").trim()
-		    	    Build_Arg=" --build-arg  SERVICE_JAR_FILE=${JAR_PATH} ."
+				// Defining Properties for Sonar build & Dockerfile Args
+				ServiceName='pandsclient-acc'
+				DTRRepo="de"
+				JAR_PATH=sh(returnStdout: true, script: "ls -1 target/*.jar").trim()
+				Build_Arg=" --build-arg  SERVICE_JAR_FILE=${JAR_PATH} ."
 		   }
         }
      }
