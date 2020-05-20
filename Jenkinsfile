@@ -3,6 +3,7 @@ def mvnHome
 def JAR_PATH
 def Build_Arg
 def ServiceName
+def DTRRepo
 
 pipeline { 
   agent  any
@@ -31,10 +32,9 @@ pipeline {
 	  when { branch "master" }
 		steps {
 		  script{
-		   
-		      
-		    docker.withRegistry('https://deprpp01.host.mobistar.be:443','Docker_Creds') {
-		    def customImage = docker.build("de/${ServiceName}:latest","${Build_Arg}")
+
+			docker.withRegistry("${DTR_URL}",'Docker_Creds') {
+		    def customImage = docker.build("${DTRRepo}/${ServiceName}:latest","${Build_Arg}")
 
 		 /* Push the container to the custom Registry */
 		    customImage.push()
@@ -52,7 +52,7 @@ pipeline {
 	    success {
 		mail to: 'OBEDPEGITUser@TechMahindra.com',
 		     subject: "Success Pipeline: ${ServiceName}",
-		     body: "Check the pinpeline at ${env.BUILD_URL}"
+		     body: "Check the pipeline at ${env.BUILD_URL}"
 	    }
 	}
 }

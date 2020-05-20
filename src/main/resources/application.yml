@@ -19,14 +19,32 @@ spring:
   application:
       name: pands-client
   profiles: acc
-
+  boot:
+    admin:
+      client:
+        url: ${SPRING_BOOTADMIN_URL}
+        username: dpeBootAdminAcc
+        password: TechMOrange2019AdminAcc
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: ${SPRING_ZIPKIN_BASEURL}
 server:
   port: 54045
 
-pandsuri: http://crm_acc_products-and-services:54046
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      show-details: always
+
+pandsuri: http://localhost:54044/
 
 logging:
   config: classpath:logback-spring.xml
 
-pandsEndPoint: "http://test/"
+pandsEndPoint: "http://localhost:54044/api/products/atomic/"
               
