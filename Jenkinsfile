@@ -45,16 +45,4 @@ pipeline {
 		}
 	}
    }
-	 post {
-	    failure {
-		mail to: 'OBEDPEGITUser@TechMahindra.com',
-		     subject: "Failed Pipeline: ${ServiceName}",
-		     body: "Something is wrong with ${env.BUILD_URL}"
-	    }
-	    success {
-		mail to: 'OBEDPEGITUser@TechMahindra.com',
-		     subject: "Success Pipeline: ${ServiceName}",
-		     body: "Check the pipeline at ${env.BUILD_URL}"
-	    }
-	}
 }
