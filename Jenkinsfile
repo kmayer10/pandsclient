@@ -7,7 +7,9 @@ def DTRRepo
 def DTR_URL = "https://opnind03.host.mobistar.be:32006"
 
 pipeline { 
-  agent  any
+  agent  {
+  	label 'docker'
+  }
  
   stages {
         stage ('Checkout code'){
