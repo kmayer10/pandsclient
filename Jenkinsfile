@@ -4,6 +4,7 @@ def JAR_PATH
 def Build_Arg
 def ServiceName
 def DTRRepo
+def DTR_URL = "https://opnind03.host.mobistar.be:32006"
 
 pipeline { 
   agent  any
