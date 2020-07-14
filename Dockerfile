@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM registry.redhat.io/redhat-openjdk-18/openjdk18-openshift
 ARG SERVICE_JAR_FILE
 RUN echo ${SERVICE_JAR_FILE}
 ADD ${SERVICE_JAR_FILE} pandscient.jar
