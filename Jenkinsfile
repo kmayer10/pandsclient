@@ -17,6 +17,10 @@ pipeline {
 			 checkout scm
 		    }
 	 }
+	 stage('Scan Base Image'){
+	 	steps {
+			sh label: '', script: 'trivy image --exit-code 1 --severity CRITICAL,HIGH registry.redhat.io/redhat-openjdk-18/openjdk18-openshift'
+		}
 	 stage('Build') {
 		steps {
 		   script{
