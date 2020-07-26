@@ -1,6 +1,6 @@
 pipeline {
     agent {
-		label 'ravi-paajee'
+		label 'docker'
 	}
 	stages {
 		stage('Package Application'){
