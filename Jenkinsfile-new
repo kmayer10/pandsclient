@@ -26,9 +26,8 @@ pipeline {
 		}
 		stage('Deploy App on DEV Cluster'){
 			steps {
+			    sh 'oc login https://opndev.host.mobistar.be:8443 --token=fXe4p9fTs6eTh4-OnBVM6xHEVBt9tAkp8WwPzIDkHuo'
 				sh 'oc project app'
-				sh 'oc delete svc/pands-acc'
-				sh 'oc delete dc/pands-acc'
 				sh 'oc new-app --docker-image="opnind03.host.mobistar.be:32006/de/pands-acc"'
 			}	
 		}
