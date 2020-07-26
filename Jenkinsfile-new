@@ -26,8 +26,7 @@ pipeline {
 		}
 		stage('Deploy App on DEV Cluster'){
 			steps {
-			    sh 'oc login "https://opndev.host.mobistar.be:8443" -u admin -p admin'
-				sh 'oc project app'
+			    sh 'oc project app'
 				sh 'oc new-app --docker-image="opnind03.host.mobistar.be:32006/de/pands-acc"'
 			}	
 		}
