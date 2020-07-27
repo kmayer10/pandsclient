@@ -40,8 +40,8 @@ pipeline {
 				sh label: '', script: 'sudo oc login https://opndev.host.mobistar.be:8443 -u admin -p admin  --insecure-skip-tls-verify=true'
 				sh 'sudo oc project uat-app'
 				sh 'sudo docker login opnind03.host.mobistar.be:32006 -u admin -p orange@123'
-				sh 'sudo oc delete svc/pands-acc'
-				sh 'sudo oc delete dc/pands-acc'
+				//sh 'sudo oc delete svc/pands-acc'
+				//sh 'sudo oc delete dc/pands-acc'
 				sh 'sudo oc new-app --docker-image="opnind03.host.mobistar.be:32006/de/pands-acc:latest" --insecure-registry=true'
 			}	
 		}
