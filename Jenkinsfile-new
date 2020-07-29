@@ -15,7 +15,7 @@ pipeline {
 		}
 		stage('Scan Image using Trivy'){
 			steps {
-				sh 'trivy image --exit-code 0 --format template --template "@junit.tpl" -o junit-report.xml --severity HIGH,CRITICAL opnind03.host.mobistar.be:32006/de/pandsclient-acc'
+				sh 'trivy image --exit-code 0 --format template --template "@junit.tpl" -o junit-report.xml --severity HIGH,CRITICAL opnind03.host.mobistar.be:32006/de/pandsclient-acc:v1'
 				junit allowEmptyResults: true, testResults: 'junit-report.xml'
 			}	
 		}
