@@ -10,7 +10,7 @@ pipeline {
 		}
 		stage('Build Docker Image'){
 			steps {
-				sh 'docker build -t opnind03.host.mobistar.be:32006/de/pands-acc .'
+				sh 'docker build --build-arg SERVICE_JAR_FILE=target/*.jar -t opnind03.host.mobistar.be:32006/de/pands-acc .'
 			}	
 		}
 		stage('Scan Image using Trivy'){
