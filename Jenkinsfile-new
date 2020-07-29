@@ -15,7 +15,7 @@ pipeline {
 		}
 		stage('Scan Image using Trivy'){
 			steps {
-				sh 'trivy image --exit-code 0 --format template --template "@junit.tpl" -o junit-report.xml --severity HIGH,CRITICAL opnind03.host.mobistar.be:32006/de/pands-acc'
+				sh 'trivy image --exit-code 0 --format template --template "@junit.tpl" -o junit-report.xml --severity HIGH,CRITICAL opnind03.host.mobistar.be:32006/de/pandsclient-acc'
 				junit allowEmptyResults: true, testResults: 'junit-report.xml'
 			}	
 		}
@@ -31,7 +31,7 @@ pipeline {
 				sh 'sudo docker login opnind03.host.mobistar.be:32006 -u admin -p orange@123'
 				//sh 'sudo oc delete svc/pands-acc'
 				//sh 'sudo oc delete dc/pands-acc'
-				sh 'sudo oc new-app --docker-image="opnind03.host.mobistar.be:32006/de/pandsclient-acc:v1" SPRING_PROFILES_ACTIVE="acc" SPRING_ZIPKIN_BASEURL="http://depswn01.host.mobistar.be:51001"  SPRING_BOOTADMIN_URL="http://dpedea01.host.mobistar.be:54067" VM_HOST_URL="http://dpeded01.host.mobistar.be:54044" --insecure-registry=true'
+				sh 'sudo oc new-app --docker-image="opnind03.host.mobistar.be:32006/de/pandsclient-acc:v1" SPRING_PROFILES_ACTIVE="acc" pandsEndPoint="http://pands:54044/api/products/atomic/" SPRING_ZIPKIN_BASEURL="http://depswn01.host.mobistar.be:51001"  SPRING_BOOTADMIN_URL="http://dpedea01.host.mobistar.be:54067" VM_HOST_URL="http://dpeded01.host.mobistar.be:54045" --insecure-registry=true'
 			}	
 		}
 		stage('Release Deployment on UAT Cluster'){
@@ -42,7 +42,7 @@ pipeline {
 				sh 'sudo docker login opnind03.host.mobistar.be:32006 -u admin -p orange@123'
 				//sh 'sudo oc delete svc/pands-acc'
 				//sh 'sudo oc delete dc/pands-acc'
-				sh 'sudo oc new-app --docker-image="opnind03.host.mobistar.be:32006/de/pandsclient-acc:v1" SPRING_PROFILES_ACTIVE="acc" SPRING_ZIPKIN_BASEURL="http://depswn01.host.mobistar.be:51001"  SPRING_BOOTADMIN_URL="http://dpedea01.host.mobistar.be:54067" VM_HOST_URL="http://dpeded01.host.mobistar.be:54044" --insecure-registry=true'
+				sh 'sudo oc new-app --docker-image="opnind03.host.mobistar.be:32006/de/pandsclient-acc:v1" SPRING_PROFILES_ACTIVE="acc" pandsEndPoint="http://pands:54044/api/products/atomic/" SPRING_ZIPKIN_BASEURL="http://depswn01.host.mobistar.be:51001"  SPRING_BOOTADMIN_URL="http://dpedea01.host.mobistar.be:54067" VM_HOST_URL="http://dpeded01.host.mobistar.be:54045" --insecure-registry=true'
 			}	
 		}
 	}
